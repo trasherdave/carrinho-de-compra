@@ -1,0 +1,36 @@
+<div th:insert="fragments/header :: modelheader"></div>
+<div class="container-fluid" style="width: 50%; margin-bottom: 100px;">
+    <h1>Lista de compras</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th >Data</th>
+                <th >Produtos</th>
+                <th >Total</th>
+                <th >Total da Compra</th>
+            </tr>
+        </thead>
+
+        <tr th:each="v : ${venda}">
+            <td th:text="${v.cliente.nome}"></td>
+
+            <td>
+                <p th:each="i : ${v.itemVenda}">
+                    <span th:text="${i.produto.descricao}"></span> | 
+                    <span th:text="${#numbers.formatCurrency(i.produto.valor})"></span> | Qtd
+                    <span th:text="${i.qtd}"></span>
+                </p>
+            </td>
+            <td>
+                <p th:each="i : ${v.itemVenda}">
+                    <span th:text="${#numbers.formatCurrency(i.total())}"></span>
+                </p>
+            </td>
+            <td>
+
+                <span th:text="${#numbers.formatCurrency(v.getTotal())}"></span>
+            </td>
+        </tr>
+    </table>
+</div>
+<div th:insert="fragments/footer :: modelfooter"></div>

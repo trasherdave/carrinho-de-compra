@@ -1,0 +1,40 @@
+<div th:insert="fragments/header :: modelheader"></div>
+<div class="container-fluid" style="width: 50%; margin-bottom: 100px;">
+    <h1>Lista de Clientes</h1>
+    <hr>
+    <h4>Pessoa Física</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th >ID</th>
+                <th >Nome</th>
+                <th >CPF</th>
+            </tr>
+        </thead>
+
+        <tr th:each="c : ${clientepf}">
+            <td th:text="${c.id}"></td>
+            <td th:text="${c.nome}"></td>
+            <td th:text="${c.cpf}"></td>
+        </tr>
+    </table>
+
+    <hr>
+    <h4>Pessoa Jurídica</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th >ID</th>
+                <th >Razão Social</th>
+                <th >CNPJ</th>
+            </tr>
+        </thead>
+
+        <tr th:each="cj : ${clientepj}">
+            <td th:text="${cj.id}"></td>
+            <td th:text="${cj.razaoSocial}"></td>
+            <td th:text="${cj.cnpj}"></td>
+        </tr>
+    </table>
+</div>
+<div th:insert="fragments/footer :: modelfooter"></div>

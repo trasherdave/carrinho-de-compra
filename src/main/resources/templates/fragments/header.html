@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" th:fragment="modelheader">
+
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no"/>
+        <link href="/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css" rel="stylesheet"/>        
+
+    </head>
+
+    <body class="jumbotron">
+        <div class="container">
+            <h1>Sistema de Venda</h1>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+                <a class="navbar-brand" href="/venda/index">Início</a>
+                <a class="nav-link" href="/venda/form">Carrinho</a>
+                <a class="nav-link" sec:authorize="hasRole('EDITOR')" href="/venda/listUser">Lista de Compras</a>
+                <a class="nav-link" sec:authorize="hasRole('ADMIN')" href="/venda/list">Lista de Vendas</a>
+                <a class="nav-link" sec:authorize="hasRole('ADMIN')" href="/produto/cadastro">Cadastro de Produtos</a>
+                <a class="nav-link" sec:authorize="hasRole('ADMIN')" href="/cliente/cadastro">Cadastro de Cliente</a>
+
+                <div class="badge badge-primary" >
+                    <h5 sec:authentication="name"></h5>
+                </div>
+
+                <div class="badge" >
+                    <form th:action="@{/logout}" method="post" class="navbar-form navbar-right my-lg-0">
+                        <button type="submit" class="btn btn-dark"> 
+                            Sair
+                        </button>
+                    </form>
+                </div>
+            </nav>  
+            <hr/>
+
+
+

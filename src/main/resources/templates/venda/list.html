@@ -1,0 +1,43 @@
+<div th:insert="fragments/header :: modelheader"></div>
+<div class="container-fluid" style="width: 50%; margin-bottom: 100px;">
+    <h1>Lista de compras</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th >Nome</th>
+                <th >Data</th>
+                <th >Produtos</th>
+                <th >Total</th>
+                <th >Total da Compra</th>
+            </tr>
+        </thead>
+
+        <tr th:each="v : ${venda}">
+            <td th:text="${v.clientePF.nome}"></td>
+            <td th:text="${v.data}"></td>
+
+
+            <td>
+                <p th:each="i : ${v.itemVenda}">
+
+                    <span th:text="${i.produto.descricao}"></span> | 
+                    <!--                <span th:text="${#numbers.formatCurrency(i.produto.valor})"></span> | Qtd-->
+                    <span th:text="${i.produto.valor}"></span> | Qtd
+                    <span th:text="${i.qtd}"></span>
+                </p>
+            </td>
+            <td>
+                <p th:each="i : ${v.itemVenda}">
+                    <!--                    <span th:text="${#numbers.formatCurrency(i.total())}"></span>-->
+                    <span th:text="${i.total()}"></span>
+                </p>
+            </td>
+            <td>
+
+                <!--                <span th:text="${#numbers.formatCurrency(v.getTotal())}"></span>-->
+                <span th:text="${v.getTotal()}"></span>
+            </td>
+        </tr>
+    </table>
+</div>
+<div th:insert="fragments/footer :: modelfooter"></div>

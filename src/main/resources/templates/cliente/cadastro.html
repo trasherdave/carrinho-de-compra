@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" th:fragment="modelheader">
+
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no"/>
+        <link href="/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css" rel="stylesheet"/>        
+
+    </head>
+    <div class="container" style="width: 50%; margin-bottom: 100px; margin-top: 100px ;">
+        <h1>Cadastro</h1>
+        <div class="col"
+
+             <hr>
+            <div th:if="${!#strings.isEmpty(erro)} ? ${erro}">
+                <div class="alert alert-danger" th:text="${!#strings.isEmpty(erro)} ? ${erro}"></div>
+            </div>
+            <div th:if="${!#strings.isEmpty(save)} ? ${save}">
+                <div class="alert alert-success" th:text="${!#strings.isEmpty(save)} ? ${save}"></div>
+            </div>
+            <div class="alert alert-danger" th:errors="${clientePF.*}"></div>
+            <form th:action="@{/cliente/save}" th:object="${clientePF}" method="post">
+                <div class="form-group">
+                    <input type="hidden" th:field="*{id}" />
+                    <h4>Nome </h4>
+                    <input type="text" placeholder="Seu nome" th:field="*{nome}"/>
+                </div>
+                <div class="form-group">
+                    <h4>CPF </h4>
+                    <input type="text" placeholder="Seu CPF" th:field="*{cpf}"/>
+                </div>
+                <div class="form-group">
+                    <h4>Senha </h4>
+                    <input type="password" placeholder="Sua senha"  th:field="*{usuario.password}"/>
+                </div>
+                <input type="submit" value="Cadastrar" class="btn btn-primary"/>
+            </form>
+
+        </div>
+    </div>
+
+    <div th:insert="fragments/footer :: modelfooter"></div>
